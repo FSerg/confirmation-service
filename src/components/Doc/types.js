@@ -1,0 +1,10 @@
+export const DOC_RESET = "DOC_RESET";
+export const DOC_GET_STARTED = "DOC_GET_STARTED";
+export const DOC_GET_FINISHED = "DOC_GET_FINISHED";
+export const DOC_GET_ERROR = "DOC_GET_ERROR";
+
+export const DOC_SAVE_STARTED = "DOC_SAVE_STARTED";
+export const DOC_SAVE_FINISHED = "DOC_SAVE_FINISHED";
+export const DOC_SAVE_ERROR = "DOC_SAVE_ERROR";
+
+export const DOC_UPDATE_POSITION = "DOC_UPDATE_POSITION";
