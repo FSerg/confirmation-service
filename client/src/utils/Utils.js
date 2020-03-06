@@ -35,9 +35,7 @@ const getAuthData = () => {
   const username = unescape(encodeURIComponent(user1C));
   const password = unescape(encodeURIComponent(pass1C));
 
-  const authData = {
-    Authorization: "Basic " + btoa(username + ":" + password)
-  };
+  const authData = "Basic " + btoa(username + ":" + password);
   return authData;
 };
 

@@ -1,12 +1,14 @@
-FROM mhart/alpine-node:11 AS builder
+FROM mhart/alpine-node:11
 WORKDIR /app
 COPY . .
-RUN npm install react-scripts -g --silent
-RUN yarn install
-RUN yarn run build
+# Install dependencies
+RUN cd client && \
+    npm install react-scripts -g --silent && \
+    yarn install && \
+    yarn build && \
+    cd .. && \
+    \
+    yarn install
 
-FROM mhart/alpine-node
-RUN yarn global add serve
-WORKDIR /app
-COPY --from=builder /app/build .
-CMD ["serve", "-p", "80", "-s", "."]doc
+# start server
+CMD [ "yarn", "start" ]

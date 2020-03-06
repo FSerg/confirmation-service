@@ -40,7 +40,9 @@ export const getDoc = docId => dispatch => {
   dispatch({ type: POSITION_RESET });
 
   return axios
-    .get(`/ut_pir/hs/warehouse/${docId}`, { headers: getAuthData() })
+    .get(`${process.env.REACT_APP_APIURL}/warehouse/${docId}`, {
+      headers: { Authorization: getAuthData() }
+    })
     .then(response => {
       const doc = response.data;
       const list = doc.list.slice();
@@ -84,7 +86,9 @@ export const saveDoc = (docId, list) => (dispatch, getState) => {
   console.log("data: ", data);
 
   return axios
-    .post("/ut_pir/hs/warehouse/", data, { headers: getAuthData() })
+    .post(`${process.env.REACT_APP_APIURL}/warehouse/`, data, {
+      headers: { Authorization: getAuthData() }
+    })
     .then(response => {
       console.log("Updated doc: ", response);
       dispatch({ type: DOC_SAVE_FINISHED });

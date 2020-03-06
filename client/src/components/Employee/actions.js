@@ -21,7 +21,9 @@ export const getEmployee = barcode => dispatch => {
   dispatch({ type: EMPLOYEE_GET_STARTED });
 
   return axios
-    .get(`/ut_pir/hs/employee/${barcode}`, { headers: getAuthData() })
+    .get(`${process.env.REACT_APP_APIURL}/employee/${barcode}`, {
+      headers: { Authorization: getAuthData() }
+    })
     .then(response => {
       return dispatch({
         type: EMPLOYEE_GET_FINISHED,
