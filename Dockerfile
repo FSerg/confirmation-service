@@ -1,25 +1,19 @@
 FROM mhart/alpine-node:11
+
+# Install pygments (for syntax highlighting)
+RUN apk update && apk add bash && rm -rf /var/cache/apk/*
+
 WORKDIR /app
 COPY . .
+
 # Install dependencies
-RUN cd client && \
-    npm install react-scripts -g --silent && \
+RUN cd client && \ 
     yarn install && \
-    cd .. && \
+    cd .. &&\
     \
     yarn install
 
-ARG REACT_APP_USERNAME
-ARG REACT_APP_USERPASS
-ARG REACT_APP_APIURL
-ENV REACT_APP_USERNAME $REACT_APP_USERNAME
-ENV REACT_APP_USERPASS $REACT_APP_USERPASS
-ENV REACT_APP_APIURL $REACT_APP_APIURL
+RUN chmod +x run
 
-RUN cd client && \
-    yarn build && \
-    cd ..
-
-
-# start server
-CMD [ "yarn", "start" ]
+# Build app and start server from script
+CMD ["/app/run"]
