@@ -4,6 +4,9 @@ COPY . .
 # Install dependencies
 RUN cd client && \
     npm install react-scripts -g --silent && \
+    yarn install && \
+    cd .. && \
+    \
     yarn install
 
 ARG REACT_APP_USERNAME
@@ -13,10 +16,10 @@ ENV REACT_APP_USERNAME $REACT_APP_USERNAME
 ENV REACT_APP_USERPASS $REACT_APP_USERPASS
 ENV REACT_APP_APIURL $REACT_APP_APIURL
 
-RUN yarn build && \
-    cd .. && \
-    \
-    yarn install
+RUN cd client && \
+    yarn build && \
+    cd ..
+
 
 # start server
 CMD [ "yarn", "start" ]
