@@ -25,9 +25,7 @@ id
 echo "===> Building ..."
 cd client && \
     yarn build && \
-    cd .. &&\
-    \
-    yarn build
+    cd ..
 
 echo "===> Running ... "
 yarn start
